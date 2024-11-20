@@ -1,6 +1,7 @@
 // import 'package:myapp/screens/categories.dart';
+import 'package:avaliacao01/screens/wallet.dart';
 import 'package:flutter/material.dart';
-import 'package:avaliacao01/data/dummy_data.dart';
+import 'package:avaliacao01/screens/coin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
+        
         colorScheme: ColorScheme.fromSeed(
+          primary: Colors.orange,
           brightness: Brightness.dark,
           seedColor: corTema,
         ),
@@ -37,55 +40,42 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int currentPageIndex = 0;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Center(child: Text(widget.title)),
-        
       ),
+      drawer: Drawer(
 
-      body: ListView.builder(
-        itemCount: availableCategories.length,
-        itemBuilder: (ctx, index) {
-          final category = availableCategories[index];
-          return Card(
-            color: category.color,
-            margin: const EdgeInsets.symmetric(vertical: 7, horizontal: 14),
-            child: ListTile(
-              title: Text(
-                category.title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              subtitle: Text(
-                '\$${category.price.toStringAsFixed(2)}', // Exibe o preço formatado.
-                style: const TextStyle(color: Colors.white70),
-              ),
-              leading: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text(
-                  category.title[0], // Exibe a primeira letra do título.
-                  style: TextStyle(color: category.color),
-                ),
-              ),
-            ),
-          );
+      ),
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
         },
-      ),
-
-      bottomNavigationBar: BottomNavigationBar(
-				currentIndex: 0,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home), label: "Moedas"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet), label: "Minha carteira"),
+        selectedIndex: currentPageIndex,
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            label: "Moedas",
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.wallet),
+            label: "Minha carteira",
+          ),
         ],
       ),
+      body: [
+        const CoinScreen(),
+        const WalletScreen(),
+      ][currentPageIndex],
+
       // floatingActionButton: FloatingActionButton(
       //   onPressed: _incrementCounter,
       //   tooltip: 'Increment',

@@ -1,62 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:avaliacao01/models/category.dart'; // Atualize o caminho do arquivo conforme necessário
+import 'package:avaliacao01/models/coin.dart';
 
 const availableCategories = [
-  Category(
+  Coin(
     id: 'c1',
     title: 'Bitcoin',
     color: Colors.orange,
-    price: 37125.50, // Preço fictício
+    price: 37125.50,
   ),
-  Category(
+  Coin(
     id: 'c2',
     title: 'Ethereum',
     color: Colors.blue,
     price: 2035.75,
   ),
-  Category(
+  Coin(
     id: 'c3',
     title: 'Binance Coin',
     color: Colors.yellow,
     price: 315.20,
   ),
-  Category(
+  Coin(
     id: 'c4',
     title: 'Cardano',
     color: Colors.green,
     price: 0.45,
   ),
-  Category(
+  Coin(
     id: 'c5',
     title: 'Solana',
     color: Colors.purple,
     price: 21.85,
   ),
-  Category(
+  Coin(
     id: 'c6',
     title: 'Ripple (XRP)',
     color: Colors.lightBlue,
     price: 0.65,
   ),
-  Category(
+  Coin(
     id: 'c7',
     title: 'Dogecoin',
     color: Colors.pink,
     price: 0.07,
   ),
-  Category(
+  Coin(
     id: 'c8',
     title: 'Polkadot',
     color: Colors.red,
     price: 4.25,
   ),
-  Category(
+  Coin(
     id: 'c9',
     title: 'Litecoin',
     color: Colors.grey,
     price: 82.45,
   ),
-  Category(
+  Coin(
     id: 'c10',
     title: 'Shiba Inu',
     color: Colors.brown,
