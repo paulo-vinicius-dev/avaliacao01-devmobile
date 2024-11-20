@@ -18,7 +18,7 @@ class CoinScreen extends StatelessWidget {
           mainAxisSpacing: 20,
         ),
         children: [
-          for (final coin in availableCategories)
+          for (final coin in availableCoins)
             CoinGridItem(coin: coin)
         ],
       ),

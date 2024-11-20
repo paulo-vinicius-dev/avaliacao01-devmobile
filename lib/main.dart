@@ -1,4 +1,6 @@
 // import 'package:myapp/screens/categories.dart';
+import 'package:avaliacao01/data/dummy_data.dart';
+import 'package:avaliacao01/models/user.dart';
 import 'package:avaliacao01/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:avaliacao01/screens/coin.dart';
@@ -8,6 +10,7 @@ void main() {
 }
 
 const corTema = Color.fromARGB(255, 131, 57, 0);
+final wallet = availableWallets[0];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,17 +18,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Crypto App',
       theme: ThemeData(
         useMaterial3: true,
-        
         colorScheme: ColorScheme.fromSeed(
-          primary: Colors.orange,
+          primary: Colors.orange[700],
           brightness: Brightness.dark,
+          surface: Colors.grey,
           seedColor: corTema,
         ),
       ),
-      home: const MyHomePage(title: 'Crypto Flutter'),
+      home: const MyHomePage(title: 'Crypto App'),
     );
   }
 }
@@ -42,18 +45,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentPageIndex = 0;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Center(child: Text(widget.title)),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text(currentPageIndex == 0 ? widget.title : 'Minha carteira'),
+        centerTitle: true,
       ),
-      drawer: Drawer(
-
-      ),
+      drawer: Drawer(),
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -62,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         selectedIndex: currentPageIndex,
         destinations: const [
           NavigationDestination(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.paid),
             label: "Moedas",
           ),
           NavigationDestination(
@@ -73,14 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: [
         const CoinScreen(),
-        const WalletScreen(),
+        WalletScreen(wallet: wallet),
       ][currentPageIndex],
-
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: const Icon(Icons.add),
-      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

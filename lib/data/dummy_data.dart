@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:avaliacao01/models/coin.dart';
+import 'package:avaliacao01/models/user.dart';
+import 'package:avaliacao01/models/wallet.dart';
 
-const availableCategories = [
+const availableCoins = [
   Coin(
     id: 'c1',
     title: 'Bitcoin',
@@ -62,4 +64,21 @@ const availableCategories = [
     color: Colors.brown,
     price: 0.00000875,
   ),
+];
+
+const availableUsers = [
+  User(
+    id: 'u1',
+    name: 'João',
+    createdAt: '01/01/2024',
+  ),
+];
+
+final availableWallets = [
+  Wallet(
+    id: 'w1',
+    balance: 10000.00,
+    owner: availableUsers[0],  
+    coins: [availableCoins[0], availableCoins[1]], 
+  )
 ];
