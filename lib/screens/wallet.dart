@@ -59,7 +59,7 @@ class WalletScreen extends StatelessWidget {
                       Text(
                         'Criação: ${wallet.owner.createdAt}',
                         style: const TextStyle(color: Colors.black),
-                      )
+                      ),
                     ],
                   ),
                 ],
