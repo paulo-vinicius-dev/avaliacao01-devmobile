@@ -78,8 +78,38 @@ class WalletScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Card(
-
+            Expanded(
+              child: ListView.builder(
+                itemCount: wallet.coins.length,
+                itemBuilder: (ctx, index) {
+                  final category = wallet.coins[index];
+                  return Card(
+                    color: category.color,
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 7, horizontal: 0),
+                    child: ListTile(
+                      title: Text(
+                        category.title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      subtitle: Text(
+                        '\$${category.price.toStringAsFixed(2)}',
+                        style: const TextStyle(color: Colors.white70),
+                      ),
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Text(
+                          category.title[0],
+                          style: TextStyle(color: category.color),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),

@@ -1,6 +1,5 @@
 // import 'package:myapp/screens/categories.dart';
 import 'package:avaliacao01/data/dummy_data.dart';
-import 'package:avaliacao01/models/user.dart';
 import 'package:avaliacao01/screens/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:avaliacao01/screens/coin.dart';
@@ -53,7 +52,50 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(currentPageIndex == 0 ? widget.title : 'Minha carteira'),
         centerTitle: true,
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+          backgroundColor: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  radius: 50,
+                  child: const Icon(
+                    Icons.person,
+                    size: 50,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  'Nome: ${wallet.owner.name}',
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+                const Divider(
+                  height: 1,
+                  color: Colors.grey,
+                ),
+                Text(
+                  'Saldo da conta: R\$${wallet.balance.toStringAsFixed(2)}',
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+                 const Divider(
+                  height: 1,
+                  color: Colors.grey,
+                ),
+                Text(
+                  'Moedas diferentes na carteira: ${wallet.coins.length}',
+                  style: const TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          )),
       bottomNavigationBar: NavigationBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         onDestinationSelected: (int index) {

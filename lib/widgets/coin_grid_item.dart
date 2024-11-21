@@ -27,7 +27,7 @@ class CoinGridItem extends StatelessWidget {
             gradient: LinearGradient(
               colors: [
                 coin.color.withOpacity(0.55),
-                coin.color.withOpacity(0.9)
+                coin.color
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
